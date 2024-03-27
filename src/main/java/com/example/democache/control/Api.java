@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.democache.persistence.Book;
@@ -29,5 +31,13 @@ public class Api {
     @GetMapping("/book/{id}")
     public Book retrieveBook(@PathVariable long id) {
         return bookService.retrieveBook(id);
+    }
+
+    @PutMapping("/book/{id}/update")
+    public Book updateBook(@PathVariable long id,
+                           @RequestParam(name = "name", defaultValue = "") String name,
+                           @RequestParam(name = "author", defaultValue = "") String author) {
+
+        return bookService.updateBook(id, name, author);
     }
 }

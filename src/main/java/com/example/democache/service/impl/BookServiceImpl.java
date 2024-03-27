@@ -3,6 +3,7 @@ package com.example.democache.service.impl;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,23 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book retrieveBook(long id) {
         log.info("BookServiceImpl.retrieveBook(" + id + ")");
-        var book = books.stream().filter(b -> Objects.equals(b.getId(), id)).findFirst();
-        return book.orElse(null);
+        return findBook(id);
+    }
+
+    @CachePut(value = "book", key = "#id")
+    @Override
+    public Book updateBook(long id, String name, String author) {
+        var book = findBook(id);
+        if (book != null) {
+            if (!name.isEmpty()) book.setName(name);
+            if (!author.isEmpty()) book.setAuthor(author);
+            return book;
+        }
+        return null;
+    }
+
+    private Book findBook(long id) {
+        return books.stream().filter(b -> Objects.equals(b.getId(), id)).findFirst().orElse(null);
     }
 
 

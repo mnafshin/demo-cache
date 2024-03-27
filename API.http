@@ -1,0 +1,96 @@
+GET http://localhost:8080/
+
+> {%
+    client.test("Request #1 is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.body === "Hello World", "received wrong book");
+    });
+%}
+
+###
+
+GET http://localhost:8080/books
+
+> {%
+    client.test("Request #2 is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const books = [
+            {
+                "id": 1,
+                "name": "mybook",
+                "author": "me"
+            },
+            {
+                "id": 2,
+                "name": "yourbook",
+                "author": "you"
+            }
+        ];
+        client.assert(JSON.stringify(response.body) === JSON.stringify(books), "received wrong book")
+    });
+%}
+
+###
+
+GET http://localhost:8080/book/1
+
+> {%
+    client.test("Request #3 is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const book = {
+            "id": 1,
+            "name": "mybook",
+            "author": "me"
+        };
+        client.assert(JSON.stringify(response.body) === JSON.stringify(book), "received wrong book")
+    });
+%}
+
+###
+
+GET http://localhost:8080/book/2
+
+> {%
+    client.test("Request #4 is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const book = {
+            "id": 2,
+            "name": "yourbook",
+            "author": "you"
+        };
+        client.assert(JSON.stringify(response.body) === JSON.stringify(book), "received wrong book")
+    });
+%}
+
+###
+
+GET http://localhost:8080/book/1
+
+> {%
+    client.test("Request #5 is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const book = {
+            "id": 1,
+            "name": "mybook",
+            "author": "me"
+        };
+        client.assert(JSON.stringify(response.body) === JSON.stringify(book), "received wrong book")
+    });
+%}
+
+###
+
+GET http://localhost:8080/book/2
+
+> {%
+    client.test("Request #6 is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const book = {
+            "id": 2,
+            "name": "yourbook",
+            "author": "you"
+        };
+        client.assert(JSON.stringify(response.body) === JSON.stringify(book), "received wrong book")
+    });
+%}
+

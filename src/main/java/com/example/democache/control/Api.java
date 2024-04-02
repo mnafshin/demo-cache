@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,5 +40,15 @@ public class Api {
                            @RequestParam(name = "author", defaultValue = "") String author) {
 
         return bookService.updateBook(id, name, author);
+    }
+
+    @PostMapping("/book/{id}/invalidateCache")
+    public void invalidateBookCache(@PathVariable long id) {
+        bookService.invalidateBookCache(id);
+    }
+
+    @PostMapping("/books/invalidateCache")
+    public void invalidateAllBooksCache() {
+        bookService.invalidateAllBookCaches();
     }
 }

@@ -10,4 +10,8 @@ public interface BookService {
     Book retrieveBook(long id);
 
     Book updateBook(long id, String name, String author);
+
+    void invalidateBookCache(long id);
+
+    void invalidateAllBookCaches();
 }

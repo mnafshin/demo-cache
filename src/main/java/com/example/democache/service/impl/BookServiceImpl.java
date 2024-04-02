@@ -3,6 +3,7 @@ package com.example.democache.service.impl;
 import java.util.List;
 import java.util.Objects;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,18 @@ public class BookServiceImpl implements BookService {
             return book;
         }
         return null;
+    }
+
+    @CacheEvict(value = "book", key = "#id")
+    @Override
+    public void invalidateBookCache(long id) {
+        log.info("The cache for book {} is invalidated", id);
+    }
+
+    @CacheEvict(value = "book", allEntries = true)
+    @Override
+    public void invalidateAllBookCaches() {
+        log.info("The cache for all books are invalidated");
     }
 
     private Book findBook(long id) {

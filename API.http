@@ -131,8 +131,39 @@ GET http://localhost:8080/book/1
 ###
 POST http://localhost:8080/book/1/invalidateCache
 
+###
+
+GET http://localhost:8080/book/1
+
+> {%
+    client.test("Request #5 is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const book = {
+            "id": 1,
+            "name": "Becoming",
+            "author": "they"
+        };
+        client.assert(JSON.stringify(response.body) === JSON.stringify(book), "received wrong book")
+    });
+%}
+
 
 ###
 POST http://localhost:8080/books/invalidateCache
 
 
+###
+
+GET http://localhost:8080/book/1
+
+> {%
+    client.test("Request #5 is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const book = {
+            "id": 1,
+            "name": "Becoming",
+            "author": "they"
+        };
+        client.assert(JSON.stringify(response.body) === JSON.stringify(book), "received wrong book")
+    });
+%}

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.RemovalCause;
+import com.github.benmanes.caffeine.cache.Scheduler;
 import lombok.extern.slf4j.Slf4j;
 
 @EnableCaching
@@ -35,9 +36,10 @@ public class CachingConfig {
                 .maximumSize(maximumSize)
                 .expireAfterAccess(durationInSeconds, TimeUnit.SECONDS)
                 .evictionListener((Object key, Object value,
-                                   RemovalCause cause) -> log.info("Key {} was evicted ({})", key, cause))
+                                   RemovalCause cause) -> log.debug("Key {} was evicted ({})", key, cause))
                 .removalListener((Object key, Object value,
-                                  RemovalCause cause) -> log.info("Key {} was removed ({})", key, cause))
+                                  RemovalCause cause) -> log.debug("Key {} was removed ({})", key, cause))
+                .scheduler(Scheduler.systemScheduler())
                 .build();
     }
 }

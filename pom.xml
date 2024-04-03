@@ -31,12 +31,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast-all</artifactId>
-            <version>4.2.8</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>

@@ -1,6 +1,10 @@
-GET http://localhost:8080/admin/cache
+GET http://localhost:8081/admin/cache
+Authorization: Basic {{username}} {{password}}
+
 
 
 ###
 
-GET http://localhost:8080/actuator/caches
+GET http://localhost:8081/actuator/caches
+Authorization: Basic {{username}} {{password}}
+

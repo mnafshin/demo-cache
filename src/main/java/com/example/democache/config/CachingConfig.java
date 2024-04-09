@@ -30,11 +30,11 @@ public class CachingConfig {
     }
 
     private Cache<Object, Object> buildCache(
-            int initialCapacity, int maximumSize, int durationInSeconds) {
+            int initialCapacity, int maximumSize, int durationInHours) {
         return Caffeine.newBuilder()
                 .initialCapacity(initialCapacity)
                 .maximumSize(maximumSize)
-                .expireAfterAccess(durationInSeconds, TimeUnit.SECONDS)
+                .expireAfterAccess(durationInHours, TimeUnit.HOURS)
                 .evictionListener((Object key, Object value,
                                    RemovalCause cause) -> log.debug("Key {} was evicted ({})", key, cause))
                 .removalListener((Object key, Object value,

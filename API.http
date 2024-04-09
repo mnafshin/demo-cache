@@ -1,4 +1,5 @@
-GET http://localhost:8080/
+GET http://localhost:8081/
+Authorization: Basic {{username}} {{password}}
 
 > {%
     client.test("Request #1 is 200", function () {
@@ -9,7 +10,9 @@ GET http://localhost:8080/
 
 ###
 
-GET http://localhost:8080/books
+GET http://localhost:8081/books
+Authorization: Basic {{username}} {{password}}
+
 
 > {%
     client.test("Request #2 is 200", function () {
@@ -32,7 +35,9 @@ GET http://localhost:8080/books
 
 ###
 
-GET http://localhost:8080/book/1
+GET http://localhost:8081/book/1
+Authorization: Basic {{username}} {{password}}
+
 
 > {%
     client.test("Request #3 is 200", function () {
@@ -48,7 +53,9 @@ GET http://localhost:8080/book/1
 
 ###
 
-GET http://localhost:8080/book/2
+GET http://localhost:8081/book/2
+Authorization: Basic {{username}} {{password}}
+
 
 > {%
     client.test("Request #4 is 200", function () {
@@ -64,7 +71,9 @@ GET http://localhost:8080/book/2
 
 ###
 
-GET http://localhost:8080/book/1
+GET http://localhost:8081/book/1
+Authorization: Basic {{username}} {{password}}
+
 
 > {%
     client.test("Request #5 is 200", function () {
@@ -80,7 +89,9 @@ GET http://localhost:8080/book/1
 
 ###
 
-GET http://localhost:8080/book/2
+GET http://localhost:8081/book/2
+Authorization: Basic {{username}} {{password}}
+
 
 > {%
     client.test("Request #6 is 200", function () {
@@ -97,7 +108,8 @@ GET http://localhost:8080/book/2
 
 ###
 
-PUT http://localhost:8080/book/1/update?name=Becoming&author=they
+PUT http://localhost:8081/book/1/update?name=Becoming&author=they
+Authorization: Basic {{username}} {{password}}
 
 > {%
     client.test("Request #7 is 200 ", function () {
@@ -113,7 +125,9 @@ PUT http://localhost:8080/book/1/update?name=Becoming&author=they
 
 ###
 
-GET http://localhost:8080/book/1
+GET http://localhost:8081/book/1
+Authorization: Basic {{username}} {{password}}
+
 
 > {%
     client.test("Request #5 is 200", function () {
@@ -129,11 +143,15 @@ GET http://localhost:8080/book/1
 
 
 ###
-POST http://localhost:8080/book/1/invalidateCache
+POST http://localhost:8081/book/1/invalidateCache
+Authorization: Basic {{username}} {{password}}
+
 
 ###
 
-GET http://localhost:8080/book/1
+GET http://localhost:8081/book/1
+Authorization: Basic {{username}} {{password}}
+
 
 > {%
     client.test("Request #5 is 200", function () {
@@ -149,12 +167,16 @@ GET http://localhost:8080/book/1
 
 
 ###
-POST http://localhost:8080/books/invalidateCache
+POST http://localhost:8081/books/invalidateCache
+Authorization: Basic {{username}} {{password}}
+
 
 
 ###
 
-GET http://localhost:8080/book/1
+GET http://localhost:8081/book/1
+Authorization: Basic {{username}} {{password}}
+
 
 > {%
     client.test("Request #5 is 200", function () {
@@ -171,7 +193,9 @@ GET http://localhost:8080/book/1
 
 ###
 
-GET http://localhost:8080/book/2
+GET http://localhost:8081/book/2
+Authorization: Basic {{username}} {{password}}
+
 
 > {%
     client.test("Request #6 is 200", function () {

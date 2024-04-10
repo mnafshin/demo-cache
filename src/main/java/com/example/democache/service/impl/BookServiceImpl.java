@@ -17,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 public class BookServiceImpl implements BookService {
 
     List<Book> books = List.of(
-            new Book(1, "mybook", "me"),
-            new Book(2, "yourbook", "you")
+            new Book(1L, "mybook", "me"),
+            new Book(2L, "yourbook", "you")
     );
 
     @Override

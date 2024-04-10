@@ -208,3 +208,67 @@ Authorization: Basic {{username}} {{password}}
         client.assert(JSON.stringify(response.body) === JSON.stringify(book), "received wrong book")
     });
 %}
+
+###
+
+GET http://localhost:8081/book/1/price
+Authorization: Basic {{username}} {{password}}
+
+
+> {%
+    client.test("Request is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const val = 100;
+        client.assert(JSON.stringify(response.body) === JSON.stringify(val), "received wrong price")
+    });
+%}
+
+###
+
+GET http://localhost:8081/book/2/price
+Authorization: Basic {{username}} {{password}}
+
+
+> {%
+    client.test("Request is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const val = 200;
+        client.assert(JSON.stringify(response.body) === JSON.stringify(val), "received wrong price")
+    });
+%}
+
+###
+
+GET http://localhost:8081/book/1/price2
+Authorization: Basic {{username}} {{password}}
+
+
+> {%
+    client.test("Request is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const val = {
+            amount: 100,
+            currency: 'USD'
+        };
+        console.log(response.body);
+        client.assert(JSON.stringify(response.body.number) === JSON.stringify(val.amount), "received wrong price")
+    });
+%}
+
+###
+
+GET http://localhost:8081/book/2/price2
+Authorization: Basic {{username}} {{password}}
+
+
+> {%
+    client.test("Request is 200", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        const val = {
+            amount: 200,
+            currency: 'USD'
+        };
+        console.log(response.body);
+        client.assert(JSON.stringify(response.body.number) === JSON.stringify(val.amount), "received wrong price")
+    });
+%}

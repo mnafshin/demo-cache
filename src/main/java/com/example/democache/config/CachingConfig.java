@@ -24,7 +24,9 @@ public class CachingConfig {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager();
         cacheManager.registerCustomCache("book",
                 buildCache(100, 20000, 30));
-        cacheManager.registerCustomCache("bookSearch",
+        cacheManager.registerCustomCache("bookPrice",
+                buildCache(50, 100, 3));
+        cacheManager.registerCustomCache("bookPrice2",
                 buildCache(50, 100, 3));
         return cacheManager;
     }
